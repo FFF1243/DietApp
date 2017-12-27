@@ -1,0 +1,41 @@
+﻿@model WebApplication1.Models.PRODUCT
+
+@{
+    ViewBag.Title = "View";
+}
+
+<div class="well container" style="margin-top: 20px">
+    
+    <div class="row">
+        @Html.HiddenFor(x => x.PRODUCT_ID)
+        <h3 style="margin-left: 15px">
+            <strong>@Model.PRODUCT_DESCRIPTION</strong>
+        </h3>
+    </div>
+
+    <div class="row">     
+        <div class="col-sm-6">
+            <p>
+                <img class="img-circle" src="~/Content/Images/kcal.png" width="30px" height="30px"/>
+                Kalorie: @Model.KCAL_100
+            </p>
+            <p>
+                <img class="img-circle" src="~/Content/Images/carbs.png" width="30px" height="30px"/>
+                Węglowodany: @Model.CARBS_100
+            </p>
+        </div>
+
+        <div class="col-sm-6">
+            <p>
+                <img class="img-circle" src="~/Content/Images/fat.png" width="30px" height="30px"/>
+                Tłuszcze: @Model.FAT_100
+            </p>
+            <p>
+                <img class="img-circle" src="~/Content/Images/protein.png" width="30px" height="30px"/>
+                Białko: @Model.PROTEIN_100
+            </p>
+        </div>
+
+    </div>
+</div>
+

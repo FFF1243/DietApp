@@ -1,0 +1,27 @@
+﻿@using WebApplication1.Models
+@model WebApplication1.Models.ProductDietViewModel
+
+@{
+    ViewBag.Title = "AddProduct";
+}
+
+<h3>Dodaj produkt do diety</h3>
+@using (Html.BeginForm("AddProducts", "Diet", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.DietId)     
+    <div class="form-group card__header">
+        @Html.DropDownListFor(m => m.ProductId, Model.AllProducts,
+            new { @class = "form-control" })
+    </div>
+
+    <div class="form-group card__body">
+        @Html.LabelFor(m => m.Quantity, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.Quantity, new {@class = "form-control"})
+    </div>
+    <div>
+            <input type="submit" value="Dodaj" class="btn btn-primary pull-left" />
+    </div>
+}
+
+
+

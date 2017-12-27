@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f2d8a7e6c1b1489b969ce4fee97e92e8" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.DIET_PRODUCTS" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DIET" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PRODUCT" Width="1.5" PointX="3.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USER_DATA" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USER_DIETS" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USER" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USERS_LOGS" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USERINFO" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.DIET_PRODUCTS_DIET_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.DIET_PRODUCTS_PRODUCT_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USER_DIETS_DIET_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USER_DATA_USER_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USER_DIETS_USER_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USERS_LOGS_USER_ID_FK" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

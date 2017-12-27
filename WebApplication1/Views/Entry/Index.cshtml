@@ -1,0 +1,68 @@
+﻿@using System.Globalization
+@model WebApplication1.Models.EntriesIndexViewModel
+
+@{
+    ViewBag.Title = "Historia";
+}
+<div class="well">
+    <div class="row">
+        <h2 style="vertical-align: text-top" class="col-sm-8">Historia wpisów</h2>
+
+
+    </div>
+    <hr />
+    <div class="row">
+
+        <div class="col-sm-7">
+            <img src="@Url.Action("Chart", "Entry")"/>
+        </div>
+
+        <div class="col-sm-5" align="center">
+            <input class="btn btn-success" style="padding: 12px 82px" type="button" value="Utwórz nowy wpis" onclick="@("window.location.href='" + @Url.Action("Create", "Entry") + "'");" />
+            <table class="table" style="margin-top: 20px">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Aktualna waga:     ")@Html.DisplayName(Model.RecentWeight) kg
+                    </th>
+                    <th>
+                        @Html.DisplayName("Aktualny wzrost:    ")@Html.DisplayName(Model.RecentHeight) cm
+                    </th>
+                </tr>
+            </table>
+
+                <table class="table" style="margin-top: 20px">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Wzrost")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Waga")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Data")
+                        </th>
+                        <th></th>
+                    </tr>
+
+
+                    @foreach (var item in Model.UserData.OrderBy(x => x.ENTRY_DATE))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HEIGHT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WEIGHT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ENTRY_DATE)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Usuń", "Delete", new { id = item.USER_DATA_ID }, new { @style = "color:#f60000;" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+</div>
+    </div>
+</div>

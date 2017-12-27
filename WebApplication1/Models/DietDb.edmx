@@ -1,0 +1,618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DIET_PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+            <PropertyRef Name="DIET_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DIET_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="QUANTITY" Type="number" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DIETS">
+          <Key>
+            <PropertyRef Name="DIET_ID" />
+          </Key>
+          <Property Name="DIET_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="KCAL" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="PROTEIN" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="FAT" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="CARBS" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="ENTRY_DATE" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_DESCRIPTION" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="KCAL_100" Type="number" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="PROTEIN_100" Type="number" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="FAT_100" Type="number" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CARBS_100" Type="number" Precision="3" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_DATA">
+          <Key>
+            <PropertyRef Name="USER_DATA_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="HEIGHT" Type="number" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="WEIGHT" Type="number" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="ENTRY_DATE" Type="date" Nullable="false" />
+          <Property Name="USER_DATA_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_DIETS">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="DIET_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DIET_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ENTRY_DATE" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="USER_NAME" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="USER_PASSWORD" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="GENDER" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="REG_DATE" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS_LOGS">
+          <Key>
+            <PropertyRef Name="USER_LOG_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="LOG_DATE" Type="date" Nullable="false" />
+          <Property Name="DEVICE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="USER_LOG_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DIETAPP.USERINFO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="USERINFO">
+          <Key>
+            <PropertyRef Name="USER_NAME" />
+            <PropertyRef Name="GENDER" />
+            <PropertyRef Name="REG_DATE" />
+            <PropertyRef Name="RECENT HEIGHT" />
+            <PropertyRef Name="RECENT WEIGHT" />
+          </Key>
+          <Property Name="USER_NAME" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="GENDER" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="REG_DATE" Type="date" Nullable="false" />
+          <Property Name="RECENT HEIGHT" Type="number" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="RECENT WEIGHT" Type="number" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="DIET_PRODUCTS_DIET_ID_FK">
+          <End Role="DIETS" Type="Self.DIETS" Multiplicity="1" />
+          <End Role="DIET_PRODUCTS" Type="Self.DIET_PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIETS">
+              <PropertyRef Name="DIET_ID" />
+            </Principal>
+            <Dependent Role="DIET_PRODUCTS">
+              <PropertyRef Name="DIET_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DIET_PRODUCTS_PRODUCT_ID_FK">
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+          <End Role="DIET_PRODUCTS" Type="Self.DIET_PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="DIET_PRODUCTS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_DATA_USER_ID_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="USER_DATA" Type="Self.USER_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="USER_DATA">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_DIETS_DIET_ID_FK">
+          <End Role="DIETS" Type="Self.DIETS" Multiplicity="1" />
+          <End Role="USER_DIETS" Type="Self.USER_DIETS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIETS">
+              <PropertyRef Name="DIET_ID" />
+            </Principal>
+            <Dependent Role="USER_DIETS">
+              <PropertyRef Name="DIET_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_DIETS_USER_ID_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="USER_DIETS" Type="Self.USER_DIETS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="USER_DIETS">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USERS_LOGS_USER_ID_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="USERS_LOGS" Type="Self.USERS_LOGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="USERS_LOGS">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ADDDIET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIETAPP" ReturnType="number">
+          <Parameter Name="DATE_PARAM" Type="date" Mode="In" />
+        </Function>
+        <Function Name="ADDPRODUCTODIET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIETAPP">
+          <Parameter Name="PR_ID" Type="number" Mode="In" />
+          <Parameter Name="DT_ID" Type="number" Mode="In" />
+          <Parameter Name="QUANT" Type="number" Mode="In" />
+        </Function>
+        <Function Name="ADDUSERLOG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIETAPP">
+          <Parameter Name="US_ID" Type="number" Mode="In" />
+          <Parameter Name="DEV" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="CHANGEPASSWORD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIETAPP">
+          <Parameter Name="NEW_PASSWORD" Type="varchar2" Mode="In" />
+          <Parameter Name="US_ID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="CREATEPRODUCT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIETAPP">
+          <Parameter Name="DESCR" Type="varchar2" Mode="In" />
+          <Parameter Name="KCAL" Type="number" Mode="In" />
+          <Parameter Name="PROTEIN" Type="number" Mode="In" />
+          <Parameter Name="FAT" Type="number" Mode="In" />
+          <Parameter Name="CARBS" Type="number" Mode="In" />
+        </Function>
+        <Function Name="CREATEUSER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIETAPP">
+          <Parameter Name="USERNAME" Type="varchar2" Mode="In" />
+          <Parameter Name="PASSWORD" Type="varchar2" Mode="In" />
+          <Parameter Name="USERGENDER" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="CREATEUSERDATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIETAPP">
+          <Parameter Name="HGH" Type="number" Mode="In" />
+          <Parameter Name="WGH" Type="number" Mode="In" />
+          <Parameter Name="US_ID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="DELETEPRODUCTFROMDIET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIETAPP">
+          <Parameter Name="PR_ID" Type="number" Mode="In" />
+          <Parameter Name="DT_ID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="LOGINBYUSERNAMEPASSWORD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIETAPP">
+          <Parameter Name="USERNAME" Type="varchar2" Mode="In" />
+          <Parameter Name="PASSWORD" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="LOGINFUNC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="DIETAPP" ReturnType="number">
+          <Parameter Name="USERNAME" Type="varchar2" Mode="In" />
+          <Parameter Name="PASSWORD" Type="varchar2" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="DIET_PRODUCTS" EntityType="Self.DIET_PRODUCTS" Schema="DIETAPP" store:Type="Tables" />
+          <EntitySet Name="DIETS" EntityType="Self.DIETS" Schema="DIETAPP" store:Type="Tables" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" Schema="DIETAPP" store:Type="Tables" />
+          <EntitySet Name="USER_DATA" EntityType="Self.USER_DATA" Schema="DIETAPP" store:Type="Tables" />
+          <EntitySet Name="USER_DIETS" EntityType="Self.USER_DIETS" Schema="DIETAPP" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="DIETAPP" store:Type="Tables" />
+          <EntitySet Name="USERS_LOGS" EntityType="Self.USERS_LOGS" Schema="DIETAPP" store:Type="Tables" />
+          <EntitySet Name="USERINFO" EntityType="Self.USERINFO" store:Type="Views" store:Schema="DIETAPP">
+            <DefiningQuery>SELECT 
+"USERINFO"."USER_NAME" AS "USER_NAME", 
+"USERINFO"."GENDER" AS "GENDER", 
+"USERINFO"."REG_DATE" AS "REG_DATE", 
+"USERINFO"."RECENT HEIGHT" AS "RECENT HEIGHT", 
+"USERINFO"."RECENT WEIGHT" AS "RECENT WEIGHT"
+FROM "DIETAPP"."USERINFO" "USERINFO"</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="DIET_PRODUCTS_DIET_ID_FK" Association="Self.DIET_PRODUCTS_DIET_ID_FK">
+            <End Role="DIETS" EntitySet="DIETS" />
+            <End Role="DIET_PRODUCTS" EntitySet="DIET_PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="DIET_PRODUCTS_PRODUCT_ID_FK" Association="Self.DIET_PRODUCTS_PRODUCT_ID_FK">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="DIET_PRODUCTS" EntitySet="DIET_PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="USER_DATA_USER_ID_FK" Association="Self.USER_DATA_USER_ID_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="USER_DATA" EntitySet="USER_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="USER_DIETS_DIET_ID_FK" Association="Self.USER_DIETS_DIET_ID_FK">
+            <End Role="DIETS" EntitySet="DIETS" />
+            <End Role="USER_DIETS" EntitySet="USER_DIETS" />
+          </AssociationSet>
+          <AssociationSet Name="USER_DIETS_USER_ID_FK" Association="Self.USER_DIETS_USER_ID_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="USER_DIETS" EntitySet="USER_DIETS" />
+          </AssociationSet>
+          <AssociationSet Name="USERS_LOGS_USER_ID_FK" Association="Self.USERS_LOGS_USER_ID_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="USERS_LOGS" EntitySet="USERS_LOGS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DIET_PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+            <PropertyRef Name="DIET_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" />
+          <Property Name="DIET_ID" Type="Int32" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="DIET" Relationship="Self.DIET_PRODUCTS_DIET_ID_FK" FromRole="DIET_PRODUCTS" ToRole="DIETS" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.DIET_PRODUCTS_PRODUCT_ID_FK" FromRole="DIET_PRODUCTS" ToRole="PRODUCTS" />
+        </EntityType>
+        <EntityType Name="DIET">
+          <Key>
+            <PropertyRef Name="DIET_ID" />
+          </Key>
+          <Property Name="DIET_ID" Type="Int32" Nullable="false" />
+          <Property Name="KCAL" Type="Int16" Nullable="false" />
+          <Property Name="PROTEIN" Type="Int16" Nullable="false" />
+          <Property Name="FAT" Type="Int16" Nullable="false" />
+          <Property Name="CARBS" Type="Int16" Nullable="false" />
+          <Property Name="ENTRY_DATE" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="DIET_PRODUCTS" Relationship="Self.DIET_PRODUCTS_DIET_ID_FK" FromRole="DIETS" ToRole="DIET_PRODUCTS" />
+          <NavigationProperty Name="USER_DIETS" Relationship="Self.USER_DIETS_DIET_ID_FK" FromRole="DIETS" ToRole="USER_DIETS" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRODUCT_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KCAL_100" Type="Int16" Nullable="false" />
+          <Property Name="PROTEIN_100" Type="Int16" Nullable="false" />
+          <Property Name="FAT_100" Type="Int16" Nullable="false" />
+          <Property Name="CARBS_100" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="DIET_PRODUCTS" Relationship="Self.DIET_PRODUCTS_PRODUCT_ID_FK" FromRole="PRODUCTS" ToRole="DIET_PRODUCTS" />
+        </EntityType>
+        <EntityType Name="USER_DATA">
+          <Key>
+            <PropertyRef Name="USER_DATA_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="HEIGHT" Type="Int16" Nullable="false" />
+          <Property Name="WEIGHT" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="ENTRY_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="USER_DATA_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USER" Relationship="Self.USER_DATA_USER_ID_FK" FromRole="USER_DATA" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="USER_DIETS">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="DIET_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="DIET_ID" Type="Int32" Nullable="false" />
+          <Property Name="ENTRY_DATE" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="DIET" Relationship="Self.USER_DIETS_DIET_ID_FK" FromRole="USER_DIETS" ToRole="DIETS" />
+          <NavigationProperty Name="USER" Relationship="Self.USER_DIETS_USER_ID_FK" FromRole="USER_DIETS" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_PASSWORD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GENDER" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REG_DATE" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="USER_DATA" Relationship="Self.USER_DATA_USER_ID_FK" FromRole="USERS" ToRole="USER_DATA" />
+          <NavigationProperty Name="USER_DIETS" Relationship="Self.USER_DIETS_USER_ID_FK" FromRole="USERS" ToRole="USER_DIETS" />
+          <NavigationProperty Name="USERS_LOGS" Relationship="Self.USERS_LOGS_USER_ID_FK" FromRole="USERS" ToRole="USERS_LOGS" />
+        </EntityType>
+        <EntityType Name="USERS_LOGS">
+          <Key>
+            <PropertyRef Name="USER_LOG_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="LOG_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DEVICE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_LOG_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USER" Relationship="Self.USERS_LOGS_USER_ID_FK" FromRole="USERS_LOGS" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="USERINFO">
+          <Key>
+            <PropertyRef Name="USER_NAME" />
+            <PropertyRef Name="GENDER" />
+            <PropertyRef Name="REG_DATE" />
+            <PropertyRef Name="RECENT_HEIGHT" />
+            <PropertyRef Name="RECENT_WEIGHT" />
+          </Key>
+          <Property Name="USER_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GENDER" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REG_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="RECENT_HEIGHT" Type="Int16" Nullable="false" />
+          <Property Name="RECENT_WEIGHT" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="DIET_PRODUCTS_DIET_ID_FK">
+          <End Role="DIETS" Type="Self.DIET" Multiplicity="1" />
+          <End Role="DIET_PRODUCTS" Type="Self.DIET_PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIETS">
+              <PropertyRef Name="DIET_ID" />
+            </Principal>
+            <Dependent Role="DIET_PRODUCTS">
+              <PropertyRef Name="DIET_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DIET_PRODUCTS_PRODUCT_ID_FK">
+          <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="DIET_PRODUCTS" Type="Self.DIET_PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="DIET_PRODUCTS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_DIETS_DIET_ID_FK">
+          <End Role="DIETS" Type="Self.DIET" Multiplicity="1" />
+          <End Role="USER_DIETS" Type="Self.USER_DIETS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIETS">
+              <PropertyRef Name="DIET_ID" />
+            </Principal>
+            <Dependent Role="USER_DIETS">
+              <PropertyRef Name="DIET_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_DATA_USER_ID_FK">
+          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
+          <End Role="USER_DATA" Type="Self.USER_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="USER_DATA">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_DIETS_USER_ID_FK">
+          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
+          <End Role="USER_DIETS" Type="Self.USER_DIETS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="USER_DIETS">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USERS_LOGS_USER_ID_FK">
+          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
+          <End Role="USERS_LOGS" Type="Self.USERS_LOGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="USERS_LOGS">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DietDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DIET_PRODUCTS" EntityType="Self.DIET_PRODUCTS" />
+          <EntitySet Name="DIETS" EntityType="Self.DIET" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCT" />
+          <EntitySet Name="USER_DATA" EntityType="Self.USER_DATA" />
+          <EntitySet Name="USER_DIETS" EntityType="Self.USER_DIETS" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <EntitySet Name="USERS_LOGS" EntityType="Self.USERS_LOGS" />
+          <EntitySet Name="USERINFOes" EntityType="Self.USERINFO" />
+          <AssociationSet Name="DIET_PRODUCTS_DIET_ID_FK" Association="Self.DIET_PRODUCTS_DIET_ID_FK">
+            <End Role="DIETS" EntitySet="DIETS" />
+            <End Role="DIET_PRODUCTS" EntitySet="DIET_PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="DIET_PRODUCTS_PRODUCT_ID_FK" Association="Self.DIET_PRODUCTS_PRODUCT_ID_FK">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="DIET_PRODUCTS" EntitySet="DIET_PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="USER_DIETS_DIET_ID_FK" Association="Self.USER_DIETS_DIET_ID_FK">
+            <End Role="DIETS" EntitySet="DIETS" />
+            <End Role="USER_DIETS" EntitySet="USER_DIETS" />
+          </AssociationSet>
+          <AssociationSet Name="USER_DATA_USER_ID_FK" Association="Self.USER_DATA_USER_ID_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="USER_DATA" EntitySet="USER_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="USER_DIETS_USER_ID_FK" Association="Self.USER_DIETS_USER_ID_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="USER_DIETS" EntitySet="USER_DIETS" />
+          </AssociationSet>
+          <AssociationSet Name="USERS_LOGS_USER_ID_FK" Association="Self.USERS_LOGS_USER_ID_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="USERS_LOGS" EntitySet="USERS_LOGS" />
+          </AssociationSet>
+          <FunctionImport Name="ADDPRODUCTODIET">
+            <Parameter Name="PR_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="DT_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="QUANT" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="ADDUSERLOG">
+            <Parameter Name="US_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="DEV" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CHANGEPASSWORD">
+            <Parameter Name="NEW_PASSWORD" Mode="In" Type="String" />
+            <Parameter Name="US_ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="CREATEPRODUCT">
+            <Parameter Name="DESCR" Mode="In" Type="String" />
+            <Parameter Name="KCAL" Mode="In" Type="Decimal" />
+            <Parameter Name="PROTEIN" Mode="In" Type="Decimal" />
+            <Parameter Name="FAT" Mode="In" Type="Decimal" />
+            <Parameter Name="CARBS" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="CREATEUSER">
+            <Parameter Name="USERNAME" Mode="In" Type="String" />
+            <Parameter Name="PASSWORD" Mode="In" Type="String" />
+            <Parameter Name="USERGENDER" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CREATEUSERDATA">
+            <Parameter Name="HGH" Mode="In" Type="Decimal" />
+            <Parameter Name="WGH" Mode="In" Type="Decimal" />
+            <Parameter Name="US_ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETEPRODUCTFROMDIET">
+            <Parameter Name="PR_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="DT_ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="LOGINBYUSERNAMEPASSWORD">
+            <Parameter Name="USERNAME" Mode="In" Type="String" />
+            <Parameter Name="PASSWORD" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DietDbContext">
+          <EntitySetMapping Name="DIET_PRODUCTS">
+            <EntityTypeMapping TypeName="Model.DIET_PRODUCTS">
+              <MappingFragment StoreEntitySet="DIET_PRODUCTS">
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="DIET_ID" ColumnName="DIET_ID" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIETS">
+            <EntityTypeMapping TypeName="Model.DIET">
+              <MappingFragment StoreEntitySet="DIETS">
+                <ScalarProperty Name="DIET_ID" ColumnName="DIET_ID" />
+                <ScalarProperty Name="KCAL" ColumnName="KCAL" />
+                <ScalarProperty Name="PROTEIN" ColumnName="PROTEIN" />
+                <ScalarProperty Name="FAT" ColumnName="FAT" />
+                <ScalarProperty Name="CARBS" ColumnName="CARBS" />
+                <ScalarProperty Name="ENTRY_DATE" ColumnName="ENTRY_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTS">
+            <EntityTypeMapping TypeName="Model.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCTS">
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="PRODUCT_DESCRIPTION" ColumnName="PRODUCT_DESCRIPTION" />
+                <ScalarProperty Name="KCAL_100" ColumnName="KCAL_100" />
+                <ScalarProperty Name="PROTEIN_100" ColumnName="PROTEIN_100" />
+                <ScalarProperty Name="FAT_100" ColumnName="FAT_100" />
+                <ScalarProperty Name="CARBS_100" ColumnName="CARBS_100" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_DATA">
+            <EntityTypeMapping TypeName="Model.USER_DATA">
+              <MappingFragment StoreEntitySet="USER_DATA">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="ENTRY_DATE" ColumnName="ENTRY_DATE" />
+                <ScalarProperty Name="USER_DATA_ID" ColumnName="USER_DATA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_DIETS">
+            <EntityTypeMapping TypeName="Model.USER_DIETS">
+              <MappingFragment StoreEntitySet="USER_DIETS">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="DIET_ID" ColumnName="DIET_ID" />
+                <ScalarProperty Name="ENTRY_DATE" ColumnName="ENTRY_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="Model.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="REG_DATE" ColumnName="REG_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS_LOGS">
+            <EntityTypeMapping TypeName="Model.USERS_LOGS">
+              <MappingFragment StoreEntitySet="USERS_LOGS">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="LOG_DATE" ColumnName="LOG_DATE" />
+                <ScalarProperty Name="DEVICE" ColumnName="DEVICE" />
+                <ScalarProperty Name="USER_LOG_ID" ColumnName="USER_LOG_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERINFOes">
+            <EntityTypeMapping TypeName="Model.USERINFO">
+              <MappingFragment StoreEntitySet="USERINFO">
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="REG_DATE" ColumnName="REG_DATE" />
+                <ScalarProperty Name="RECENT_HEIGHT" ColumnName="RECENT HEIGHT" />
+                <ScalarProperty Name="RECENT_WEIGHT" ColumnName="RECENT WEIGHT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ADDPRODUCTODIET" FunctionName="Model.Store.ADDPRODUCTODIET" />
+          <FunctionImportMapping FunctionImportName="ADDUSERLOG" FunctionName="Model.Store.ADDUSERLOG" />
+          <FunctionImportMapping FunctionImportName="CHANGEPASSWORD" FunctionName="Model.Store.CHANGEPASSWORD" />
+          <FunctionImportMapping FunctionImportName="CREATEPRODUCT" FunctionName="Model.Store.CREATEPRODUCT" />
+          <FunctionImportMapping FunctionImportName="CREATEUSER" FunctionName="Model.Store.CREATEUSER" />
+          <FunctionImportMapping FunctionImportName="CREATEUSERDATA" FunctionName="Model.Store.CREATEUSERDATA" />
+          <FunctionImportMapping FunctionImportName="DELETEPRODUCTFROMDIET" FunctionName="Model.Store.DELETEPRODUCTFROMDIET" />
+          <FunctionImportMapping FunctionImportName="LOGINBYUSERNAMEPASSWORD" FunctionName="Model.Store.LOGINBYUSERNAMEPASSWORD" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

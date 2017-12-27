@@ -1,0 +1,42 @@
+﻿@using WebApplication1.Models
+@model WebApplication1.Models.DietViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="row">
+    <section class="list col-md-4">
+        @Html.Action("AddProducts", "Diet", new { id = Model.DietId })
+        @foreach (var product in Model.ChosenProducts)
+        {
+            <div class="card">
+                <div class="card__header clearfix">
+                    <h5 class="pull-left">@product.Key.PRODUCT_DESCRIPTION</h5> @*Display product description*@
+                    <i class="fa fa-trash-o trash pull-right card__remove-card-btn" data-card-id="@product.Key"></i>
+                </div>
+                <div class="card__body">
+                    @product.Value gram@*Display product quantity*@
+                </div>
+            </div>
+        }
+        @using (Html.BeginForm("Create", "Diet", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Date, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Date, new { @class = "form-control datepicker" })
+            </div>
+            @Html.HiddenFor(m => m.DietId)
+            <div>
+                <input type="submit" class="btn btn-success" value="Dodaj diete" />
+            </div>
+            <div>
+                @Html.ActionLink("Powrót do listy diet", "Index")
+            </div>
+        }
+    </section>
+    <div class="col-md-8">     
+                @Html.Action("PartialIndex","Product");
+
+    </div>
+</div>

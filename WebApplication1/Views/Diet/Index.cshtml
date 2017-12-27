@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebApplication1.Models.DIET>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="well">
+    <div class="row">
+        <h2 class="col-sm-7" style="vertical-align: text-top" class="col-sm-8">Diety</h2>
+        <input class="btn btn-success col-sm-5" style="padding: 12px 82px" type="button" value="Utwórz nowa diete" onclick="@("window.location.href='" + @Url.Action("CreateNewDiet", "Diet") + "'");" />
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Kalorie")
+            </th>
+            <th>
+                @Html.DisplayName("Białko")
+            </th>
+            <th>
+                @Html.DisplayName("Tłuszcz")
+            </th>
+            <th>
+                @Html.DisplayName("Węglowodany")
+            </th>
+            <th>
+                @Html.DisplayName("Data")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KCAL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PROTEIN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FAT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CARBS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ENTRY_DATE)
+                </td>
+                <td>
+                    @Html.ActionLink("Edytuj", "Edit", new {id = item.DIET_ID}, new {@style= "color:#0eed00;" })
+                    @Html.ActionLink("Usuń", "Delete", new {dietId = item.DIET_ID}, new { @style = "color:#f60000;"})
+                    @Html.ActionLink("Podziel się", "Share", new { id = item.DIET_ID }, new { @style = "color:#0000ff;" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

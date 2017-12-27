@@ -1,0 +1,20 @@
+﻿@model WebApplication1.Models.ProductListViewModel
+
+
+@{
+    for (int i = 0; i < Model.Products.Count(); i += 2)
+    {
+        <div class="row">
+            <div class="col-sm-6">
+                @Html.Partial("PartialProductView", Model.Products.ToList()[i])
+            </div>
+            <div class="col-sm-6">
+                @if (i + 1 < Model.Products.Count())
+                {
+                    @Html.Partial("PartialProductView", Model.Products.ToList()[i + 1]);
+                }
+            </div>
+        </div>
+    }
+}
+
