@@ -13,7 +13,7 @@ namespace WebApplication1.Repositories.Concrete
         {
             get
             {
-                using (var context = new DietDBContext())
+                using (var context = new DietDbContext())
                 {
                     return context.PRODUCTS.ToList();
                 }
@@ -22,7 +22,7 @@ namespace WebApplication1.Repositories.Concrete
 
         public void AddProductToDb(PRODUCT product)
         {
-            using (var ctx = new DietDBContext())
+            using (var ctx = new DietDbContext())
             {
                 ctx.CREATEPRODUCT(product.PRODUCT_DESCRIPTION, product.KCAL_100, product.PROTEIN_100, product.FAT_100,
                     product.CARBS_100);

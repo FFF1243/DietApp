@@ -363,6 +363,7 @@
     <Content Include="Models\DietDb.edmx.diagram">
       <DependentUpon>DietDb.edmx</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />

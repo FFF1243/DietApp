@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="WebApplication1.Controllers.AccountController">
+    <Position X="7.25" Y="10.5" Width="3.5" />
+    <NestedTypes>
+      <Class Name="WebApplication1.Controllers.AccountController.ChallengeResult" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\AccountController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABACACCAAAAAAAAFgAAAAAAABMAIAAAIUAAQgAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Controllers.DietController">
+    <Position X="11" Y="10.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAQAAAIAAAAAEAAIAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\DietController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Controllers.EntryController">
+    <Position X="4.25" Y="10.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAQAAAAAAAAAAEAAEAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\EntryController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Controllers.ManageController">
+    <Position X="0.5" Y="10.5" Width="3.5" />
+    <NestedTypes>
+      <Enum Name="WebApplication1.Controllers.ManageController.ManageMessageId" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ManageController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABACAACAAgAAAAABgAAAAAAAAAAIAAAEEAAAAAAA=</HashCode>
+      <FileName>Controllers\ManageController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Controllers.ProductController">
+    <Position X="14.25" Y="10.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQQAAAAAAAAAAAAAEAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ProductController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Models.DietDbContext">
+    <Position X="4" Y="3.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAMAAAQAAAAAAAAIIABAAEAAAEAAkAIAACACAAQg=</HashCode>
+      <FileName>Models\DietDb.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Models.DIET">
+    <Position X="0.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAQAAQAAAAQIAABAAAAAAEIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DIET.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Models.DIET_PRODUCTS">
+    <Position X="4.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAQAAAAAAAAAAAAKAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Models\DIET_PRODUCTS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Models.PRODUCT">
+    <Position X="12" Y="2.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAIAAQAAAAAAAABAAAAAAAAABAAgBAAAAAAA=</HashCode>
+      <FileName>Models\PRODUCT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Models.USER">
+    <Position X="6.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgCCAAAIAAAAAEAAAAAAAgACAAAA=</HashCode>
+      <FileName>Models\USER.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Models.USER_DATA">
+    <Position X="14.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIQAAAASAAAAAAAAAAAAEAAAAAAABAAAA=</HashCode>
+      <FileName>Models\USER_DATA.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Models.USER_DIETS">
+    <Position X="9.75" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAQAAAACAAAACAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\USER_DIETS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Models.USERINFO">
+    <Position X="12" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAACABAIAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\USERINFO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Models.USERS_LOGS">
+    <Position X="9.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAACIAAIAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\USERS_LOGS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Repositories.Concrete.DietRepository">
+    <Position X="7.25" Y="20.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAQIQQAAAAAEAAACAAAAAAgEAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\Concrete\DietRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Repositories.Concrete.ProductRepository" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="22.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAQ=</HashCode>
+      <FileName>Repositories\Concrete\ProductRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WebApplication1.Repositories.Concrete.UserRepostiory" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="22.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ABAAECgQCAAEAQAAAAAAAAAAABAAABAIAACAAAAAAAg=</HashCode>
+      <FileName>Repositories\Concrete\UserRepostiory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WebApplication1.Services.DietService">
+    <Position X="11.25" Y="16.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAgIQAAAAAAAAAACAAAAAAgAAAAAAAAABAAIAA=</HashCode>
+      <FileName>Services\DietService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Services.EntryService">
+    <Position X="4.75" Y="16.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAACAAAIAAAIACAAAAAAAQAAA=</HashCode>
+      <FileName>Services\EntryService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Services.ProductService">
+    <Position X="0.5" Y="16.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAACAAIAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ProductService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApplication1.Services.UserService">
+    <Position X="8.25" Y="16.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAQBAAAEAAAAAAIAAAAAA=</HashCode>
+      <FileName>Services\UserService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="WebApplication1.Repositories.Interfaces.IProductRepository">
+    <Position X="0.75" Y="20.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAQ=</HashCode>
+      <FileName>Repositories\Interfaces\IProductRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WebApplication1.Repositories.Interfaces.IUserRepository">
+    <Position X="3.75" Y="20.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABAAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Repositories\Interfaces\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -26,6 +26,7 @@ namespace WebApplication1.Models
         [Display(Name = "Tłuszcze")]
         public byte Fat { get; set; }
 
+        [Display(Name = "Obraz")]
         [DataType(DataType.Upload)]
         public HttpPostedFileBase ImageUpload { get; set; }
     }

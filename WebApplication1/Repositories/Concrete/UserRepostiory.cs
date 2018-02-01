@@ -25,7 +25,7 @@ namespace WebApplication1.Repositories.Concrete
         {
             get
             {
-                using (var context = new DietDBContext())
+                using (var context = new DietDbContext())
                 {
                     return context.USERS.ToList();
                 }
@@ -37,7 +37,7 @@ namespace WebApplication1.Repositories.Concrete
         {
             get
             {
-                using (var context = new DietDBContext())
+                using (var context = new DietDbContext())
                 {
                     return context.USER_DATA.ToList();
                 }
@@ -49,7 +49,7 @@ namespace WebApplication1.Repositories.Concrete
         {
             get
             {
-                using (var context = new DietDBContext())
+                using (var context = new DietDbContext())
                 {
                     return context.USERINFOes.ToList();
                 }
@@ -61,7 +61,7 @@ namespace WebApplication1.Repositories.Concrete
         {
             get
             {
-                using (var context = new DietDBContext())
+                using (var context = new DietDbContext())
                 {
                     return context.USERS_LOGS.ToList();
                 }
@@ -72,7 +72,7 @@ namespace WebApplication1.Repositories.Concrete
 
         public void CreateUserData(USER_DATA data)
         {
-            using (var context = new DietDBContext())
+            using (var context = new DietDbContext())
             {
                 context.CREATEUSERDATA(data.HEIGHT, data.WEIGHT, data.USER_ID);
                 context.SaveChanges();
@@ -81,7 +81,7 @@ namespace WebApplication1.Repositories.Concrete
 
         public void DeletUserData(int id)
         {
-            using (var context = new DietDBContext())
+            using (var context = new DietDbContext())
             {
                 var itemToRemove = context.USER_DATA.FirstOrDefault(x => x.USER_DATA_ID == id);
                 if(itemToRemove !=null)
@@ -93,7 +93,7 @@ namespace WebApplication1.Repositories.Concrete
         public int GetUserIdByName(string name)
         {
             int id = -1;
-            using (var context = new DietDBContext())
+            using (var context = new DietDbContext())
             {
                 var result = context.USERS.Where(x => x.USER_NAME == name).FirstOrDefault();
                 if (result != null) id = result.USER_ID;
@@ -103,7 +103,7 @@ namespace WebApplication1.Repositories.Concrete
 
         public void CreateUserLog(int userId, string deviceInfo)
         {
-            using (var ctx = new DietDBContext())
+            using (var ctx = new DietDbContext())
             {
                 ctx.ADDUSERLOG(userId, deviceInfo);
                 ctx.SaveChanges();
@@ -135,7 +135,7 @@ namespace WebApplication1.Repositories.Concrete
 
         public void SetNewPassword(int userId, string password)
         {
-            using (var ctx = new DietDBContext())
+            using (var ctx = new DietDbContext())
             {
                 ctx.CHANGEPASSWORD(password, userId);
                 ctx.SaveChanges();
@@ -174,7 +174,7 @@ namespace WebApplication1.Repositories.Concrete
 
         public bool ValidateData(USER user)
         {
-            using (var context = new DietDBContext())
+            using (var context = new DietDbContext())
             {
                 //CALL DB PROCEDURE
             }

@@ -15,10 +15,10 @@ namespace WebApplication1.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class DietDBContext : DbContext
+    public partial class DietDbContext : DbContext
     {
-        public DietDBContext()
-            : base("name=DietDBContext")
+        public DietDbContext()
+            : base("name=DietDbContext")
         {
         }
     

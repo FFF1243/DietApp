@@ -15,7 +15,7 @@ namespace WebApplication1.Repositories.Concrete
         {
             get
             {
-                using (var ctx = new DietDBContext())
+                using (var ctx = new DietDbContext())
                 {
                     return ctx.DIETS.ToList().ToList();
                 }
@@ -30,7 +30,7 @@ namespace WebApplication1.Repositories.Concrete
         {
             get
             {
-                using (var ctx = new DietDBContext())
+                using (var ctx = new DietDbContext())
                 {
                     return ctx.DIET_PRODUCTS.ToList();
                 }
@@ -44,7 +44,7 @@ namespace WebApplication1.Repositories.Concrete
         {
             get
             {
-                using (var ctx = new DietDBContext())
+                using (var ctx = new DietDbContext())
                 {
                     return ctx.USER_DIETS.ToList();
                 }
@@ -57,7 +57,7 @@ namespace WebApplication1.Repositories.Concrete
 
         public void AddUserDietsEntry(USER_DIETS entry)
         {
-            using (var ctx = new DietDBContext())
+            using (var ctx = new DietDbContext())
             {
                 ctx.USER_DIETS.Add(entry);
                 ctx.SaveChanges();
@@ -66,7 +66,7 @@ namespace WebApplication1.Repositories.Concrete
 
         /*public void AddDiet(DIET diet)
         {
-            using (var ctx = new DietDBContext())
+            using (var ctx = new DietDbContext())
             {
                 ctx.DIETS.Add(diet);
                 ctx.SaveChanges();
@@ -75,7 +75,7 @@ namespace WebApplication1.Repositories.Concrete
 
         public void AddProductToDiet(int dietId, int productId, int quantity)
         {
-            using (var ctx = new DietDBContext())
+            using (var ctx = new DietDbContext())
             {
                 ctx.ADDPRODUCTODIET(productId, dietId, quantity);
                 ctx.SaveChanges();
@@ -112,7 +112,7 @@ namespace WebApplication1.Repositories.Concrete
 
         public void UpdateDate(int dietId, DateTime date)
         {
-            using (var ctx = new DietDBContext())
+            using (var ctx = new DietDbContext())
             {
                 var item = ctx.DIETS.Where(x => x.DIET_ID == dietId).FirstOrDefault();
                 item.ENTRY_DATE = date;
@@ -123,7 +123,7 @@ namespace WebApplication1.Repositories.Concrete
 
         public void DeleteAllDietProductsEntries(int dietId)
         {
-            using (var ctx = new DietDBContext())
+            using (var ctx = new DietDbContext())
             {
                 var items = ctx.DIET_PRODUCTS.Where(x => x.DIET_ID == dietId).ToList();
                 ctx.DIET_PRODUCTS.RemoveRange(items);
@@ -133,7 +133,7 @@ namespace WebApplication1.Repositories.Concrete
 
         public void DeleteDiet(int dietId)
         {
-            using (var ctx = new DietDBContext())
+            using (var ctx = new DietDbContext())
             {
                 var item = ctx.DIETS.FirstOrDefault(x => x.DIET_ID == dietId);
                 if (item != null)
